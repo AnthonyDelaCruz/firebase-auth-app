@@ -1,15 +1,19 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 
 import LoginPage from "pages/Login";
 
-import "./App.css";
+import { Routes as RouteMap } from "enums/routes";
 
-import { firebaseAuth } from "./firebaseApp";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <LoginPage />
+      <Switch>
+        <Route exact path={RouteMap.ROOT} component={LoginPage} />
+        <Route path={RouteMap.PROFILE} component={() => <div>PROFILE</div>} />
+      </Switch>
     </div>
   );
 }
