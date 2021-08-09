@@ -10,11 +10,17 @@ import {
   FireFilled,
 } from "@ant-design/icons";
 
+import { signInWithGoogle } from "services/authentication/googleSignIn";
+
 import "./Login.css";
 
 const { Title, Text } = Typography;
 
 function LoginPage() {
+  function handleGoogleSignIn() {
+    signInWithGoogle();
+  }
+
   return (
     <div id="login-page">
       <div className="login-form">
@@ -26,7 +32,9 @@ function LoginPage() {
           This will be a React Application that will feature firebase auth
           functionality.
         </Text>
-        <Button icon={<GooglePlusOutlined />}>Sign in with Google</Button>
+        <Button onClick={handleGoogleSignIn} icon={<GooglePlusOutlined />}>
+          Sign in with Google
+        </Button>
         <Button icon={<FacebookFilled />}>Sign in with Facebook</Button>
         <Button icon={<TwitterOutlined />}>Sign in with Twitter</Button>
         <Button icon={<MailOutlined />}>Sign in with Email</Button>
