@@ -13,3 +13,11 @@ export async function signInWithGoogle(): Promise<
     console.error("Error signing up with google... ", error.message);
   }
 }
+
+export async function singOut(): Promise<void> {
+  try {
+    await firebaseAuth.signOut();
+  } catch (error) {
+    console.error("Error signing out... ", error.message);
+  }
+}

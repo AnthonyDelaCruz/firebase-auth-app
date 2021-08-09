@@ -10,7 +10,7 @@ import {
   FireFilled,
 } from "@ant-design/icons";
 
-import { signInWithGoogle } from "services/authentication/googleSignIn";
+import { signInWithGoogle } from "services/firebaseAuthentication";
 
 import "./Login.css";
 
