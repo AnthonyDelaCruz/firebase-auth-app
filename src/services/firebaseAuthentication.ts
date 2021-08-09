@@ -14,7 +14,7 @@ export async function signInWithGoogle(): Promise<
   }
 }
 
-export async function singOut(): Promise<void> {
+export async function signOut(): Promise<void> {
   try {
     await firebaseAuth.signOut();
   } catch (error) {
