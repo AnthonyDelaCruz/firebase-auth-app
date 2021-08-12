@@ -1,11 +1,22 @@
 import firebase from "firebase/app";
 import { firebaseAuth, googleAuthProvider } from "firebaseApp";
 
-export async function signInWithGoogle(): Promise<
-  firebase.User | null | undefined
-> {
+type User = firebase.User | null | undefined;
+
+export async function signInWithGoogle(): Promise<User> {
   try {
     const response = await firebaseAuth.signInWithPopup(googleAuthProvider);
+    const user = response?.user ?? null;
+
+    return user;
+  } catch (error) {
+    console.error("Error signing up with google... ", error.message);
+  }
+}
+
+export async function signInAnonymously(): Promise<User> {
+  try {
+    const response = await firebaseAuth.signInAnonymously();
     const user = response?.user ?? null;
 
     return user;
