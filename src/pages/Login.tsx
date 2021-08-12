@@ -10,7 +10,10 @@ import {
   FireFilled,
 } from "@ant-design/icons";
 
-import { signInWithGoogle } from "services/firebaseAuthentication";
+import {
+  signInWithGoogle,
+  signInAnonymously,
+} from "services/firebaseAuthentication";
 
 import "./Login.css";
 
@@ -19,6 +22,10 @@ const { Title, Text } = Typography;
 function LoginPage() {
   function handleGoogleSignIn() {
     signInWithGoogle();
+  }
+
+  function handleAnonymousSignIn() {
+    signInAnonymously();
   }
 
   return (
@@ -38,7 +45,9 @@ function LoginPage() {
         <Button icon={<FacebookFilled />}>Sign in with Facebook</Button>
         <Button icon={<TwitterOutlined />}>Sign in with Twitter</Button>
         <Button icon={<MailOutlined />}>Sign in with Email</Button>
-        <Button icon={<UserOutlined />}>Anonymous</Button>
+        <Button onClick={handleAnonymousSignIn} icon={<UserOutlined />}>
+          Anonymous
+        </Button>
       </div>
     </div>
   );
