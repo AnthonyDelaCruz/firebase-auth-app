@@ -14,18 +14,23 @@ import {
   signInWithGoogle,
   signInAnonymously,
 } from "services/firebaseAuthentication";
+import { RouteChildrenProps } from "react-router-dom";
+
+import { Routes } from "enums/routes";
 
 import "./Login.css";
 
 const { Title, Text } = Typography;
 
-function LoginPage() {
+function LoginPage({ history }: RouteChildrenProps) {
   function handleGoogleSignIn() {
     signInWithGoogle();
+    history.push(Routes.PROFILE);
   }
 
   function handleAnonymousSignIn() {
     signInAnonymously();
+    history.push(Routes.PROFILE);
   }
 
   return (
@@ -42,9 +47,27 @@ function LoginPage() {
         <Button onClick={handleGoogleSignIn} icon={<GooglePlusOutlined />}>
           Sign in with Google
         </Button>
-        <Button icon={<FacebookFilled />}>Sign in with Facebook</Button>
-        <Button icon={<TwitterOutlined />}>Sign in with Twitter</Button>
-        <Button icon={<MailOutlined />}>Sign in with Email</Button>
+        <Button
+          disabled
+          onClick={() => console.log("Facebook")}
+          icon={<FacebookFilled />}
+        >
+          Sign in with Facebook
+        </Button>
+        <Button
+          disabled
+          onClick={() => console.log("Twitter")}
+          icon={<TwitterOutlined />}
+        >
+          Sign in with Twitter
+        </Button>
+        <Button
+          disabled
+          onClick={() => console.log("Email")}
+          icon={<MailOutlined />}
+        >
+          Sign in with Email
+        </Button>
         <Button onClick={handleAnonymousSignIn} icon={<UserOutlined />}>
           Anonymous
         </Button>

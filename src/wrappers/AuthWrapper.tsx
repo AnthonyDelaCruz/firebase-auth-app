@@ -7,24 +7,34 @@ type User = firebase.User | null;
 type Props = {
   children: React.ReactElement;
 };
+type AuthContextType = {
+  currentUser: User;
+  isLoadingUser: boolean;
+};
 
-export const AuthContext = createContext<User>(null);
+export const AuthContext = createContext<AuthContextType>({
+  currentUser: null,
+  isLoadingUser: true,
+});
 
 function AuthWrapper({ children }: Props) {
   const [currentUser, setCurrentUser] = useState<User>(null);
+  const [isLoadingUser, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
         setCurrentUser(user);
       }
+
+      setIsLoading(false);
     });
   }, []);
 
-  console.log(`currentUser`, currentUser?.displayName);
-
   return (
-    <AuthContext.Provider value={currentUser}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ currentUser, isLoadingUser }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
 

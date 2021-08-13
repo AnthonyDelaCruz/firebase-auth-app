@@ -4,7 +4,7 @@ import { Route, Redirect, RouteProps } from "react-router-dom";
 
 import { Routes } from "enums/routes";
 
-function AuthenticatedRoute({
+function UnAuthenticatedRoute({
   component: Component,
   ...props
 }: RouteProps): React.ReactElement | null {
@@ -19,13 +19,13 @@ function AuthenticatedRoute({
         if (isLoadingUser) return <div>Loading...</div>;
 
         if (!isLoadingUser && currentUser) {
-          return <Component {...routeProps} />;
+          return <Redirect to={Routes.PROFILE} />;
         } else {
-          return <Redirect to={Routes.LOGIN} />;
+          return <Component {...routeProps} />;
         }
       }}
     />
   );
 }
 
-export default AuthenticatedRoute;
+export default UnAuthenticatedRoute;
