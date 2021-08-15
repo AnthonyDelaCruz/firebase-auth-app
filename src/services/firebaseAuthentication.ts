@@ -25,6 +25,14 @@ export async function signInAnonymously(): Promise<User> {
   }
 }
 
+export async function linkAnonymousUserWithGoogleAccount(): Promise<void> {
+  try {
+    await firebaseAuth.currentUser?.linkWithPopup(googleAuthProvider);
+  } catch (error) {
+    console.error("Error linking users account...", error.message);
+  }
+}
+
 export async function signOut(): Promise<void> {
   try {
     await firebaseAuth.signOut();
