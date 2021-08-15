@@ -1,5 +1,9 @@
 import firebase from "firebase/app";
-import { firebaseAuth, googleAuthProvider } from "firebaseApp";
+import {
+  firebaseAuth,
+  googleAuthProvider,
+  twitterAuthProvider,
+} from "firebaseApp";
 
 type User = firebase.User | null | undefined;
 
@@ -22,6 +26,17 @@ export async function signInAnonymously(): Promise<User> {
     return user;
   } catch (error) {
     console.error("Error signing up with google... ", error.message);
+  }
+}
+
+export async function signInWithTwitter(): Promise<User> {
+  try {
+    const response = await firebaseAuth.signInWithPopup(twitterAuthProvider);
+    const user = response?.user ?? null;
+
+    return user;
+  } catch (error) {
+    console.error("Error signing up with twitter... ", error.message);
   }
 }
 

@@ -13,6 +13,7 @@ import {
 import {
   signInWithGoogle,
   signInAnonymously,
+  signInWithTwitter,
 } from "services/firebaseAuthentication";
 import { RouteChildrenProps } from "react-router-dom";
 
@@ -30,6 +31,11 @@ function LoginPage({ history }: RouteChildrenProps) {
 
   function handleAnonymousSignIn() {
     signInAnonymously();
+    history.push(Routes.PROFILE);
+  }
+
+  function handleSignInWIthTwitter() {
+    signInWithTwitter();
     history.push(Routes.PROFILE);
   }
 
@@ -54,11 +60,7 @@ function LoginPage({ history }: RouteChildrenProps) {
         >
           Sign in with Facebook
         </Button>
-        <Button
-          disabled
-          onClick={() => console.log("Twitter")}
-          icon={<TwitterOutlined />}
-        >
+        <Button onClick={handleSignInWIthTwitter} icon={<TwitterOutlined />}>
           Sign in with Twitter
         </Button>
         <Button
