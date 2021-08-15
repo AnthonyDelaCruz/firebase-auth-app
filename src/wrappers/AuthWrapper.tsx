@@ -23,14 +23,12 @@ function AuthWrapper({ children }: Props) {
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
-      if (user) {
-        setCurrentUser(user);
-      }
-
+      setCurrentUser(user);
       setIsLoading(false);
     });
   }, []);
 
+  console.log(`currentUser`, currentUser);
   return (
     <AuthContext.Provider value={{ currentUser, isLoadingUser }}>
       {children}
