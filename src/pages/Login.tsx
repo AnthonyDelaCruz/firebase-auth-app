@@ -20,6 +20,7 @@ import PersistenceList from "components/PersistenceList";
 import { Routes } from "enums/routes";
 import { AuthPersistence } from "enums/authPersistence";
 import useAuthPersistence from "hooks/useAuthPersistence";
+import SignUpForm from "components/SignUpForm";
 
 import "./Login.css";
 
@@ -89,6 +90,7 @@ function LoginPage({ history }: RouteChildrenProps) {
           Anonymous
         </Button>
       </div>
+      <SignUpForm />
     </div>
   );
 }
