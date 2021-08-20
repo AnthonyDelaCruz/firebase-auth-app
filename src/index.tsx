@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
+import { SnackbarProvider } from "notistack";
 
 import AuthWrapper from "wrappers/AuthWrapper";
 
@@ -11,7 +12,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthWrapper>
-        <App />
+        <SnackbarProvider maxSnack={3}>
+          <App />
+        </SnackbarProvider>
       </AuthWrapper>
     </Router>
   </React.StrictMode>,
