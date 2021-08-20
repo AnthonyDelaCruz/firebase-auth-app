@@ -21,6 +21,7 @@ import { Routes } from "enums/routes";
 import { AuthPersistence } from "enums/authPersistence";
 import useAuthPersistence from "hooks/useAuthPersistence";
 import SignUpForm from "components/SignUpForm";
+import LoginForm from "components/LoginForm";
 
 import "./Login.css";
 
@@ -91,6 +92,7 @@ function LoginPage({ history }: RouteChildrenProps) {
         </Button>
       </div>
       <SignUpForm />
+      <LoginForm />
     </div>
   );
 }

@@ -1,15 +1,29 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Typography } from "antd";
+import { signUpWithEmailAndPassword } from "services/firebaseAuthentication";
+import { withSnackbar, WithSnackbarProps } from "notistack";
 
-function SignUpForm() {
+const { Title } = Typography;
+
+function SignUpForm({ enqueueSnackbar }: WithSnackbarProps): JSX.Element {
   const { register, handleSubmit } = useForm();
 
-  function onSubmit(data: any) {
-    console.log("data", data);
+  async function onSubmit(data: any) {
+    const { username, password } = data;
+
+    try {
+      await signUpWithEmailAndPassword(username, password);
+    } catch (error) {
+      enqueueSnackbar(error.message, {
+        variant: "error",
+      });
+    }
   }
+
   return (
     <Form onFinish={handleSubmit(onSubmit)}>
+      <Title>Sign Up</Title>
       <Form.Item label="Username">
         <Input {...register("username")} placeholder="JuanDelaCruz" />
       </Form.Item>
@@ -24,4 +38,4 @@ function SignUpForm() {
   );
 }
 
-export default SignUpForm;
+export default withSnackbar(SignUpForm);
