@@ -3,6 +3,7 @@ import { Switch } from "react-router-dom";
 
 import LoginPage from "pages/Login";
 import ProfilePage from "pages/ProfilePage";
+import PasswordlessSignUpRedirectPage from "pages/PasswordlessSignUpRedirectPage";
 import AuthenticatedRoute from "components/AuthenticatedRoute";
 import UnAuthenticatedRoute from "components/Unauthenticatedroute";
 import { Routes as RouteMap } from "enums/routes";
@@ -17,6 +18,11 @@ function App() {
           exact
           path={RouteMap.LOGIN}
           component={LoginPage}
+        />
+        <UnAuthenticatedRoute
+          exact
+          path={RouteMap.PASSWORDLESS_REDIRECT}
+          component={PasswordlessSignUpRedirectPage}
         />
         <AuthenticatedRoute path={RouteMap.PROFILE} component={ProfilePage} />
       </Switch>
