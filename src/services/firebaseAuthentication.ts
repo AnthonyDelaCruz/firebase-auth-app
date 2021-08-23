@@ -82,6 +82,25 @@ export async function signInWithEmailAndPassword(
   }
 }
 
+export async function signInwithEmailLink(email: string): Promise<void> {
+  try {
+    /**
+     * @todo
+     * extract urls
+     */
+    const actionCodeSettings = {
+      url: "http://localhost:3000/passwordless-redirect",
+      handleCodeInApp: true,
+    };
+
+    await firebaseAuth.sendSignInLinkToEmail(email, actionCodeSettings);
+    window.localStorage.setItem("emailForSignIn", email);
+  } catch (error) {
+    console.error("Error sending email link to user... ", error.message);
+    throw new Error(error.message);
+  }
+}
+
 export async function linkAnonymousUserWithGoogleAccount(): Promise<void> {
   try {
     await firebaseAuth.currentUser?.linkWithPopup(googleAuthProvider);
@@ -95,5 +114,27 @@ export async function signOut(): Promise<void> {
     await firebaseAuth.signOut();
   } catch (error) {
     console.error("Error signing out... ", error.message);
+  }
+}
+
+export async function sendEmailVerificationLink(): Promise<void> {
+  try {
+    await firebaseAuth.currentUser?.sendEmailVerification();
+  } catch (error) {
+    console.error(
+      "Error sending verifciation email link to user...",
+      error.message
+    );
+  }
+}
+
+export async function sendPasswordResetLink(email: string) {
+  try {
+    await firebaseAuth.sendPasswordResetEmail(email);
+  } catch (error) {
+    console.error(
+      "Error sending password reset email link to user...",
+      error.message
+    );
   }
 }
