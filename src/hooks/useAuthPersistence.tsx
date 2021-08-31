@@ -1,44 +1,27 @@
-import firebase from "firebase";
+import { useState, useCallback } from "react";
 
 import { AuthPersistence } from "enums/authPersistence";
 import { firebaseAuth } from "firebaseApp";
 
 type AuthPersistenceHook = {
   invokePersistenceMethod: () => Promise<void>;
+  handleChangePersistenceType: (type: AuthPersistence) => void;
 };
 
-function useAuthPersistence(type: AuthPersistence): AuthPersistenceHook {
-  let persistenceMethod: () => Promise<void | string>;
+function useAuthPersistence(): AuthPersistenceHook {
+  const [persistenceType, setPersistenceType] = useState<AuthPersistence>(
+    AuthPersistence.LOCAL
+  );
 
-  switch (type) {
-    case AuthPersistence.LOCAL:
-      persistenceMethod = async () => {
-        await firebaseAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-      };
-      break;
-    case AuthPersistence.SESSION:
-      persistenceMethod = async () => {
-        await firebaseAuth.setPersistence(
-          firebase.auth.Auth.Persistence.SESSION
-        );
-      };
-      break;
-    case AuthPersistence.NONE:
-      persistenceMethod = async () => {
-        await firebaseAuth.setPersistence(firebase.auth.Auth.Persistence.NONE);
-      };
-      break;
+  function handleChangePersistenceType(type: AuthPersistence) {
+    setPersistenceType(type);
   }
 
-  async function invokePersistenceMethod() {
-    try {
-      await persistenceMethod();
-    } catch (error) {
-      console.error("Error setting authentication persistence ", error.message);
-    }
-  }
+  const invokePersistenceMethod: () => Promise<void> = useCallback(async () => {
+    await firebaseAuth.setPersistence(persistenceType);
+  }, [persistenceType]);
 
-  return { invokePersistenceMethod };
+  return { invokePersistenceMethod, handleChangePersistenceType };
 }
 
 export default useAuthPersistence;

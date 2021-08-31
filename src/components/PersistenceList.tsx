@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Typography, Radio, RadioChangeEvent } from "antd";
 
 import { AuthPersistence } from "enums/authPersistence";
+import { AuthPersistenceContext } from "wrappers/AuthPersistenceWrapper";
 
 const { Title, Paragraph } = Typography;
 
-type Props = {
-  onChange: (type: AuthPersistence) => void;
-};
+function PersistenceList(): React.ReactElement {
+  const { handleChangePersistenceType } = useContext(AuthPersistenceContext);
 
-function PersistenceList({ onChange }: Props): React.ReactElement {
   function handleOnChange(e: RadioChangeEvent): void {
-    onChange(e.target.value);
+    handleChangePersistenceType(e.target.value);
   }
 
   return (

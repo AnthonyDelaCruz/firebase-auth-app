@@ -3,15 +3,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  background-color: #059be5;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
+  height: auto;
+  width: 500px;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: -8px 8px 0px 0px #ffcb2b;
 }
 
 .login-form .ant-btn {
   margin-bottom: 1em;
   border-radius: 5px;
   height: 50px;
+}
+
+.login-form .ant-btn:last-child {
+  margin-bottom: unset;
 }

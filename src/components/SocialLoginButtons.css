@@ -1,0 +1,4 @@
+.social-login-buttons-container {
+  display: flex;
+  flex-direction: column;
+}
