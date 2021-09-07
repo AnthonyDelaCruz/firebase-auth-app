@@ -1,22 +1,26 @@
 import React from "react";
 
 import { Typography } from "antd";
-import { FireFilled } from "@ant-design/icons";
+// import { FireFilled } from "@ant-design/icons";
 
-import PersistenceList from "components/PersistenceList";
-import SignUpForm from "components/SignUpForm";
-import LoginForm from "components/LoginForm";
-import EmailLinkSignInForm from "components/EmailLinkSignInForm";
+// import PersistenceList from "components/PersistenceList";
+// import SignUpForm from "components/SignUpForm";
+// import LoginForm from "components/LoginForm";
+// import EmailLinkSignInForm from "components/EmailLinkSignInForm";
 import SocialLoginButtons from "components/SocialLoginButtons";
-import AuthPersistenceWrapper from "wrappers/AuthPersistenceWrapper";
+// import AuthPersistenceWrapper from "wrappers/AuthPersistenceWrapper";
 
 import "./Login.css";
 
-const { Title, Text } = Typography;
+const {
+  Title,
+  //Text
+} = Typography;
 
 function LoginPage() {
   return (
     <div id="login-page">
+      <img src="firebase_logo.png" alt="firebase-logo" />
       <div className="login-form">
         <Title level={2}>Firebase Auth</Title>
         {/* <Title>

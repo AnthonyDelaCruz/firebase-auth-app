@@ -7,6 +7,10 @@
   background-color: #059be5;
 }
 
+#login-page img {
+  height: 190px;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
@@ -16,6 +20,11 @@
   background-color: #ffffff;
   border-radius: 4px;
   box-shadow: -8px 8px 0px 0px #ffcb2b;
+}
+
+.login-form h2.ant-typography {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .login-form .ant-btn {
