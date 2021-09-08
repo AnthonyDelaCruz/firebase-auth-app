@@ -1,9 +1,8 @@
 import React, { useEffect, useState, createContext } from "react";
-import firebase from "firebase";
+import { User } from "types/user";
 
 import { firebaseAuth } from "firebaseApp";
 
-type User = firebase.User | null;
 type Props = {
   children: React.ReactElement;
 };
