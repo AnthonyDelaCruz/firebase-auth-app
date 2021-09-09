@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Typography, Layout, Avatar, Image, Row, Col } from "antd";
+import { Typography, Layout, Avatar, Row, Col, Anchor } from "antd";
 import { RouteChildrenProps } from "react-router-dom";
 
 import {
@@ -17,6 +17,7 @@ import "./ProfilePage.css";
 
 const { Title, Paragraph, Text } = Typography;
 const { Header, Content } = Layout;
+const { Link } = Anchor;
 
 function ProfilePage({ history }: RouteChildrenProps): React.ReactElement {
   const { currentUser } = useContext(AuthContext);
@@ -39,6 +40,8 @@ function ProfilePage({ history }: RouteChildrenProps): React.ReactElement {
     sendPasswordResetLink(currentUser?.email || "");
   }
 
+  const getCurrentAnchor = () => "#profile";
+
   return (
     <div>
       <Header className="profile-header">
@@ -52,11 +55,14 @@ function ProfilePage({ history }: RouteChildrenProps): React.ReactElement {
       </Header>
       <Content className="profile-content">
         <Row justify="center">
-          <Col span={4}>
+          <Col span={4} className="profile-content-settings">
             <Title>Settings</Title>
-            <Paragraph>Verify Email</Paragraph>
-            <Paragraph>Link Accounts</Paragraph>
-            <Paragraph>Reset Password</Paragraph>
+            <Anchor getCurrentAnchor={getCurrentAnchor}>
+              <Link title="Profile" href="#profile" />
+              <Link title="Verify Email" href="#verify-email" />
+              <Link title="Link Account" href="#something" />
+              <Link title="Reset Password" href="#something" />
+            </Anchor>
           </Col>
           <Col span={8}>
             <Title>Profile</Title>

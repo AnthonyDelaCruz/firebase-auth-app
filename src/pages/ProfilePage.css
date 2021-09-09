@@ -22,3 +22,15 @@
   height: 100%;
   padding: 3rem 0 0;
 }
+
+.profile-content-settings a {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+.profile-content-settings a:hover {
+  color: #000000;
+  text-decoration: underline;
+}
