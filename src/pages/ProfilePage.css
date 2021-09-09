@@ -12,7 +12,13 @@
   height: calc(100vh - 64px);
 }
 
+.profile-logout.ant-typography {
+  color: #ffffff;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
 .profile-content .ant-row {
   height: 100%;
-  padding: 3rem 0;
+  padding: 3rem 0 0;
 }

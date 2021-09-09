@@ -45,10 +45,7 @@ function ProfilePage({ history }: RouteChildrenProps): React.ReactElement {
         <img src="firebase_logo.png" alt="firebase-logo" />
         <div>
           <Avatar src={avatarUrl} alt="profile-picture" />
-          <Text
-            style={{ color: "#ffffff", marginLeft: 20 }}
-            onClick={handleSignOut}
-          >
+          <Text className="profile-logout" onClick={handleSignOut}>
             Logout
           </Text>
         </div>
