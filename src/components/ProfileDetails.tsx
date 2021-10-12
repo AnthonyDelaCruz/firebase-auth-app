@@ -13,7 +13,8 @@ function ProfileDetails({ currentUser }: Props): React.ReactElement {
   const avatarUrl = currentUser?.photoURL;
   const displayName = currentUser?.displayName;
   const email = currentUser?.email;
-  const isAnonymous = currentUser?.isAnonymous;
+  const isEmailVerified = currentUser?.emailVerified;
+  const authProviders = currentUser?.providerData;
 
   return (
     <div>
@@ -28,14 +29,18 @@ function ProfileDetails({ currentUser }: Props): React.ReactElement {
           <Paragraph>{displayName}</Paragraph>
         </Col>
         <Col span={12}>
-          <Paragraph strong>Email</Paragraph>
+          <Paragraph strong>
+            Email ({isEmailVerified ? "Verified" : "Not verified"})
+          </Paragraph>
           <Paragraph>{email}</Paragraph>
         </Col>
       </Row>
       <Row>
         <Col>
-          <Paragraph strong>Anonymous account?</Paragraph>
-          <Paragraph>{isAnonymous ? "Anonymous" : "Not anonymous"}</Paragraph>
+          <Paragraph strong>Auth Providers</Paragraph>
+          {authProviders?.map((provider) => (
+            <Paragraph>{provider?.providerId}</Paragraph>
+          ))}
         </Col>
       </Row>
     </div>
