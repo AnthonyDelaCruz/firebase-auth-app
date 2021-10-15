@@ -1,5 +1,5 @@
 export enum Routes {
   LOGIN = "/login",
-  PROFILE = "/profile",
+  DASHBOARD = "/dashboard",
   PASSWORDLESS_REDIRECT = "/passwordless-redirect",
 }

@@ -19,7 +19,7 @@ function UnAuthenticatedRoute({
         if (isLoadingUser) return <div>Loading...</div>;
 
         if (!isLoadingUser && currentUser) {
-          return <Redirect to={Routes.PROFILE} />;
+          return <Redirect to={Routes.DASHBOARD} />;
         } else {
           return <Component {...routeProps} />;
         }

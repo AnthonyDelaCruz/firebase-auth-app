@@ -1,7 +1,13 @@
 import React, { useContext } from "react";
 
 import { Typography, Layout, Avatar, Row, Col, Anchor } from "antd";
-import { RouteChildrenProps } from "react-router-dom";
+import {
+  RouteChildrenProps,
+  Link,
+  Switch,
+  Route,
+  useRouteMatch,
+} from "react-router-dom";
 
 import {
   signOut,
@@ -14,12 +20,15 @@ import { AuthContext } from "wrappers/AuthWrapper";
 import ProfileDetails from "components/ProfileDetails";
 
 import "./ProfilePage.css";
+import VerifyEmail from "./VerifyEmail";
+import LinkAccount from "./LinkAccount";
+import ResetPassword from "./ResetPassword";
 
-const { Title, Paragraph, Text } = Typography;
+const { Title, Text } = Typography;
 const { Header, Content } = Layout;
-const { Link } = Anchor;
 
 function ProfilePage({ history }: RouteChildrenProps): React.ReactElement {
+  const match = useRouteMatch();
   const { currentUser } = useContext(AuthContext);
   const avatarUrl = currentUser?.photoURL;
 
@@ -40,10 +49,8 @@ function ProfilePage({ history }: RouteChildrenProps): React.ReactElement {
     sendPasswordResetLink(currentUser?.email || "");
   }
 
-  const getCurrentAnchor = () => "#profile";
-
   return (
-    <div>
+    <>
       <Header className="profile-header">
         <img src="firebase_logo.png" alt="firebase-logo" />
         <div>
@@ -57,32 +64,33 @@ function ProfilePage({ history }: RouteChildrenProps): React.ReactElement {
         <Row justify="center">
           <Col span={4} className="profile-content-settings">
             <Title>Settings</Title>
-            <Anchor getCurrentAnchor={getCurrentAnchor}>
-              <Link title="Profile" href="#profile" />
-              <Link title="Verify Email" href="#verify-email" />
-              <Link title="Link Account" href="#something" />
-              <Link title="Reset Password" href="#something" />
-            </Anchor>
+            <Link to="/dashboard/profile">Profile</Link>
+            <Link to="/dashboard/verify-email">Verify Email</Link>
+            <Link to="/dashboard/link-account">Link Account</Link>
+            <Link to="/dashboard/reset-password">Reset Password</Link>
           </Col>
           <Col span={8}>
-            <Title>Profile</Title>
-            <ProfileDetails currentUser={currentUser} />
+            <Switch>
+              <Route exact path={`${match.path}/profile`}>
+                <ProfileDetails currentUser={currentUser} />
+              </Route>
+              <Route
+                path={`${match.path}/verify-email`}
+                component={VerifyEmail}
+              />
+              <Route
+                path={`${match.path}/link-account`}
+                component={LinkAccount}
+              />
+              <Route
+                path={`${match.path}/reset-password`}
+                component={ResetPassword}
+              />
+            </Switch>
           </Col>
         </Row>
-        {/* <Title>Profile Page</Title>
-        {currentUser?.emailVerified
-          ? "Email verified"
-          : "Email has not been verified"}
-        <Button onClick={handleSignOut}>Logout</Button>
-        <Button onClick={handleLinkAccountWithGmail}>
-          Link current account to Gmail!
-        </Button>
-        <Button onClick={handleSendEmailVerificationLink}>
-          Send Email Verifciation
-        </Button>
-        <Button onClick={handleSendPasswordResetLink}>Reset Password</Button> */}
       </Content>
-    </div>
+    </>
   );
 }
 

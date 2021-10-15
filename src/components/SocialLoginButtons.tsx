@@ -25,19 +25,19 @@ function SocialLoginButtons(): JSX.Element {
   function handleGoogleSignIn() {
     invokePersistenceMethod();
     signInWithGoogle();
-    history.push(Routes.PROFILE);
+    history.push(Routes.DASHBOARD);
   }
 
   function handleAnonymousSignIn() {
     invokePersistenceMethod();
     signInAnonymously();
-    history.push(Routes.PROFILE);
+    history.push(Routes.DASHBOARD);
   }
 
   function handleSignInWIthTwitter() {
     invokePersistenceMethod();
     signInWithTwitter();
-    history.push(Routes.PROFILE);
+    history.push(Routes.DASHBOARD);
   }
 
   return (

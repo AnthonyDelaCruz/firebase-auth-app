@@ -2,7 +2,7 @@ import React from "react";
 import { Switch } from "react-router-dom";
 
 import LoginPage from "pages/Login";
-import ProfilePage from "pages/ProfilePage";
+import Dashboard from "pages/Dashboard";
 import PasswordlessSignUpRedirectPage from "pages/PasswordlessSignUpRedirectPage";
 import AuthenticatedRoute from "components/AuthenticatedRoute";
 import UnAuthenticatedRoute from "components/Unauthenticatedroute";
@@ -24,7 +24,7 @@ function App() {
           path={RouteMap.PASSWORDLESS_REDIRECT}
           component={PasswordlessSignUpRedirectPage}
         />
-        <AuthenticatedRoute path={RouteMap.PROFILE} component={ProfilePage} />
+        <AuthenticatedRoute path={RouteMap.DASHBOARD} component={Dashboard} />
       </Switch>
     </div>
   );
