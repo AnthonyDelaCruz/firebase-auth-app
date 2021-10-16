@@ -17,12 +17,9 @@ import {
 } from "services/firebaseAuthentication";
 import { DashboardRoutes, Routes } from "enums/routes";
 import { AuthContext } from "wrappers/AuthWrapper";
-import ProfileDetails from "components/ProfileDetails";
 
-import "./ProfilePage.css";
-import VerifyEmail from "./VerifyEmail";
-import LinkAccount from "./LinkAccount";
-import ResetPassword from "./ResetPassword";
+import "./Dashboard.css";
+import { VerifyEmail, LinkAccount, ResetPassword, ProfileDetails } from "pages";
 import { firebaseFunctions } from "firebaseApp";
 
 const { Title, Text } = Typography;

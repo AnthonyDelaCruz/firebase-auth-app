@@ -1,9 +1,7 @@
 import React from "react";
 import { Switch } from "react-router-dom";
 
-import LoginPage from "pages/Login";
-import Dashboard from "pages/Dashboard";
-import PasswordlessSignUpRedirectPage from "pages/PasswordlessSignUpRedirectPage";
+import { LoginPage, Dashboard, PasswordlessSignUpRedirectPage } from "pages";
 import AuthenticatedRoute from "components/AuthenticatedRoute";
 import UnAuthenticatedRoute from "components/Unauthenticatedroute";
 import { Routes as RouteMap } from "enums/routes";
