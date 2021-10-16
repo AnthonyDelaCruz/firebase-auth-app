@@ -6,7 +6,7 @@ import "firebase/functions";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 export const firebaseFunctions = firebaseApp.functions();
-firebaseFunctions.useEmulator("localhost", 5001);
+// firebaseFunctions.useEmulator("localhost", 5001); // turn this on to test functions locally
 
 export const firebaseAuth = firebaseApp.auth();
 export const googleAuthProvider: firebase.auth.GoogleAuthProvider_Instance =
