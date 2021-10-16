@@ -1,10 +1,14 @@
 import { useForm } from "react-hook-form";
-import { Button, Form, Input, Typography } from "antd";
+import { Button, Form, Input } from "antd";
 import { withSnackbar, WithSnackbarProps } from "notistack";
 
-import { signUpWithEmailAndPassword } from "services/firebaseAuthentication";
+import { signUpWithEmailAndPassword } from "services/auth";
 
-const { Title } = Typography;
+/**
+ *
+ * @TODO
+ * Add toasts when email has been sent...
+ */
 
 function SignUpForm({ enqueueSnackbar }: WithSnackbarProps) {
   const { register, handleSubmit } = useForm();
@@ -14,7 +18,7 @@ function SignUpForm({ enqueueSnackbar }: WithSnackbarProps) {
 
     try {
       await signUpWithEmailAndPassword(username, password);
-    } catch (error) {
+    } catch (error: any) {
       enqueueSnackbar(error.message, {
         variant: "error",
       });
@@ -23,7 +27,6 @@ function SignUpForm({ enqueueSnackbar }: WithSnackbarProps) {
 
   return (
     <Form onFinish={handleSubmit(onSubmit)}>
-      <Title>Sign Up</Title>
       <Form.Item label="Username">
         <Input {...register("username")} placeholder="JuanDelaCruz" />
       </Form.Item>
@@ -33,7 +36,9 @@ function SignUpForm({ enqueueSnackbar }: WithSnackbarProps) {
       <Form.Item label="Confirm Password">
         <Input {...register("confirm_password")} />
       </Form.Item>
-      <Button htmlType="submit">Sign In</Button>
+      <Button block htmlType="submit">
+        Create account
+      </Button>
     </Form>
   );
 }

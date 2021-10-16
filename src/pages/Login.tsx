@@ -1,21 +1,18 @@
 import React from "react";
 
-import { Typography } from "antd";
+import { Typography, Divider } from "antd";
 // import { FireFilled } from "@ant-design/icons";
 
 // import PersistenceList from "components/PersistenceList";
 // import SignUpForm from "components/SignUpForm";
 // import LoginForm from "components/LoginForm";
 // import EmailLinkSignInForm from "components/EmailLinkSignInForm";
-import SocialLoginButtons from "components/SocialLoginButtons";
 // import AuthPersistenceWrapper from "wrappers/AuthPersistenceWrapper";
+import { SignUpForm, SocialLoginButtons } from "components";
 
 import "./Login.css";
 
-const {
-  Title,
-  //Text
-} = Typography;
+const { Title, Text } = Typography;
 
 function LoginPage() {
   return (
@@ -32,12 +29,13 @@ function LoginPage() {
           functionality.
         </Text> */}
         <SocialLoginButtons />
+        <Divider>or Sign up</Divider>
+        <SignUpForm />
         {/* <AuthPersistenceWrapper> */}
         {/* <PersistenceList /> */}
         {/* <LoginForm /> */}
         {/* </AuthPersistenceWrapper> */}
       </div>
-      {/* <SignUpForm /> */}
       {/* <EmailLinkSignInForm /> */}
     </div>
   );
