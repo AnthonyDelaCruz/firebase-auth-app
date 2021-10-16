@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Typography, Layout, Avatar, Row, Col, Anchor } from "antd";
+import { Typography, Layout, Avatar, Row, Col } from "antd";
 import {
   RouteChildrenProps,
   Link,
@@ -15,7 +15,7 @@ import {
   sendEmailVerificationLink,
   sendPasswordResetLink,
 } from "services/firebaseAuthentication";
-import { Routes } from "enums/routes";
+import { DashboardRoutes, Routes } from "enums/routes";
 import { AuthContext } from "wrappers/AuthWrapper";
 import ProfileDetails from "components/ProfileDetails";
 
@@ -27,10 +27,27 @@ import ResetPassword from "./ResetPassword";
 const { Title, Text } = Typography;
 const { Header, Content } = Layout;
 
-function ProfilePage({ history }: RouteChildrenProps): React.ReactElement {
+function Dashboard({ history }: RouteChildrenProps): React.ReactElement {
   const match = useRouteMatch();
+  const currentPath = match.path;
+
   const { currentUser } = useContext(AuthContext);
   const avatarUrl = currentUser?.photoURL;
+
+  const profileRoute = createDashboardNestedRoute(DashboardRoutes.PROFILE);
+  const verifyEmailRoute = createDashboardNestedRoute(
+    DashboardRoutes.VERIFY_EMAIL
+  );
+  const linkAccountRoute = createDashboardNestedRoute(
+    DashboardRoutes.LINK_ACCOUNT
+  );
+  const resetPasswordRoute = createDashboardNestedRoute(
+    DashboardRoutes.RESET_PASSWORD
+  );
+
+  function createDashboardNestedRoute(route: DashboardRoutes) {
+    return `${currentPath}${route}`; // -> /currentPath/route
+  }
 
   function handleSignOut() {
     signOut();
@@ -64,28 +81,19 @@ function ProfilePage({ history }: RouteChildrenProps): React.ReactElement {
         <Row justify="center">
           <Col span={4} className="profile-content-settings">
             <Title>Settings</Title>
-            <Link to="/dashboard/profile">Profile</Link>
-            <Link to="/dashboard/verify-email">Verify Email</Link>
-            <Link to="/dashboard/link-account">Link Account</Link>
-            <Link to="/dashboard/reset-password">Reset Password</Link>
+            <Link to={profileRoute}>Profile</Link>
+            <Link to={verifyEmailRoute}>Verify Email</Link>
+            <Link to={linkAccountRoute}>Link Account</Link>
+            <Link to={resetPasswordRoute}>Reset Password</Link>
           </Col>
           <Col span={8}>
             <Switch>
-              <Route exact path={`${match.path}/profile`}>
+              <Route exact path={profileRoute}>
                 <ProfileDetails currentUser={currentUser} />
               </Route>
-              <Route
-                path={`${match.path}/verify-email`}
-                component={VerifyEmail}
-              />
-              <Route
-                path={`${match.path}/link-account`}
-                component={LinkAccount}
-              />
-              <Route
-                path={`${match.path}/reset-password`}
-                component={ResetPassword}
-              />
+              <Route path={verifyEmailRoute} component={VerifyEmail} />
+              <Route path={linkAccountRoute} component={LinkAccount} />
+              <Route path={resetPasswordRoute} component={ResetPassword} />
             </Switch>
           </Col>
         </Row>
@@ -94,4 +102,4 @@ function ProfilePage({ history }: RouteChildrenProps): React.ReactElement {
   );
 }
 
-export default ProfilePage;
+export default Dashboard;
