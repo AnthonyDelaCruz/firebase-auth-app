@@ -12,7 +12,6 @@ import {
 import {
   signOut,
   linkAnonymousUserWithGoogleAccount,
-  sendEmailVerificationLink,
   sendPasswordResetLink,
 } from "services/firebaseAuthentication";
 import { DashboardRoutes, Routes } from "enums/routes";
@@ -54,10 +53,6 @@ function Dashboard({ history }: RouteChildrenProps): React.ReactElement {
 
   function handleLinkAccountWithGmail() {
     linkAnonymousUserWithGoogleAccount();
-  }
-
-  function handleSendEmailVerificationLink() {
-    sendEmailVerificationLink();
   }
 
   function handleSendPasswordResetLink() {

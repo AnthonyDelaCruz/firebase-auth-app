@@ -117,17 +117,6 @@ export async function signOut(): Promise<void> {
   }
 }
 
-export async function sendEmailVerificationLink(): Promise<void> {
-  try {
-    await firebaseAuth.currentUser?.sendEmailVerification();
-  } catch (error) {
-    console.error(
-      "Error sending verifciation email link to user...",
-      error.message
-    );
-  }
-}
-
 export async function sendPasswordResetLink(email: string) {
   try {
     await firebaseAuth.sendPasswordResetEmail(email);
