@@ -2,8 +2,11 @@ import firebase from "firebase/app";
 import { firebaseConfig } from "firebaseConfig";
 
 import "firebase/auth";
+import "firebase/functions";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
+export const firebaseFunctions = firebaseApp.functions();
+firebaseFunctions.useEmulator("localhost", 5001);
 
 export const firebaseAuth = firebaseApp.auth();
 export const googleAuthProvider: firebase.auth.GoogleAuthProvider_Instance =
