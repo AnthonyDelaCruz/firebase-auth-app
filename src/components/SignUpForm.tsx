@@ -1,12 +1,12 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { Button, Form, Input, Typography } from "antd";
-import { signUpWithEmailAndPassword } from "services/firebaseAuthentication";
 import { withSnackbar, WithSnackbarProps } from "notistack";
+
+import { signUpWithEmailAndPassword } from "services/firebaseAuthentication";
 
 const { Title } = Typography;
 
-function SignUpForm({ enqueueSnackbar }: WithSnackbarProps): JSX.Element {
+function SignUpForm({ enqueueSnackbar }: WithSnackbarProps) {
   const { register, handleSubmit } = useForm();
 
   async function onSubmit(data: any) {
