@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Typography, Layout, Avatar, Row, Col, Button } from "antd";
+import { Typography, Layout, Avatar, Row, Col } from "antd";
 import {
   RouteChildrenProps,
   Link,
@@ -19,7 +19,6 @@ import { AuthContext } from "wrappers/AuthWrapper";
 
 import "./Dashboard.css";
 import { VerifyEmail, LinkAccount, ResetPassword, ProfileDetails } from "pages";
-import { firebaseFunctions } from "firebaseApp";
 
 const { Title, Text } = Typography;
 const { Header, Content } = Layout;
@@ -59,12 +58,6 @@ function Dashboard({ history }: RouteChildrenProps): React.ReactElement {
     sendPasswordResetLink(currentUser?.email || "");
   }
 
-  function handleFollowUser() {
-    const followUserFunction = firebaseFunctions.httpsCallable("followUser");
-
-    followUserFunction();
-  }
-
   return (
     <>
       <Header className="profile-header">
@@ -80,7 +73,6 @@ function Dashboard({ history }: RouteChildrenProps): React.ReactElement {
         <Row justify="center">
           <Col span={4} className="profile-content-settings">
             <Title>Settings</Title>
-            <Button onClick={handleFollowUser}>Follow user</Button>
             <Link to={profileRoute}>Profile</Link>
             <Link to={verifyEmailRoute}>Verify Email</Link>
             <Link to={linkAccountRoute}>Link Account</Link>
