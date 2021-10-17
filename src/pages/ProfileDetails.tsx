@@ -1,5 +1,6 @@
 import React from "react";
-import { Avatar, Row, Col, Typography, Image } from "antd";
+import { Avatar, Row, Col, Typography } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 
 import { User } from "types/user";
 
@@ -7,7 +8,7 @@ type Props = {
   currentUser: User;
 };
 
-const { Paragraph } = Typography;
+const { Title, Paragraph } = Typography;
 
 function ProfileDetails({ currentUser }: Props): React.ReactElement {
   const avatarUrl = currentUser?.photoURL;
@@ -16,13 +17,14 @@ function ProfileDetails({ currentUser }: Props): React.ReactElement {
   const isEmailVerified = currentUser?.emailVerified;
   const authProviders = currentUser?.providerData;
 
+  const avatarProps = avatarUrl
+    ? { src: avatarUrl }
+    : { icon: <UserOutlined /> };
+
   return (
     <div>
-      <Avatar
-        src={<Image src={avatarUrl || ""} />}
-        alt="profile-picture"
-        size={90}
-      />
+      <Title level={3}>Profile details</Title>
+      <Avatar alt="profile-picture" shape="square" size={90} {...avatarProps} />
       <Row>
         <Col span={12}>
           <Paragraph strong>Display name</Paragraph>
