@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { Button, Form, Input } from "antd";
 import { withSnackbar, WithSnackbarProps } from "notistack";
 
-import { signUpWithEmailAndPassword } from "services/auth";
+import { signUp } from "services/auth";
 import { AuthForms } from "types/login";
 
 /**
@@ -24,7 +24,7 @@ function SignUpForm({
     const { username, password } = data;
 
     try {
-      await signUpWithEmailAndPassword(username, password);
+      await signUp(username, password);
     } catch (error: any) {
       enqueueSnackbar(error.message, {
         variant: "error",

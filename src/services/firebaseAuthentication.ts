@@ -40,27 +40,6 @@ export async function signInWithTwitter(): Promise<User> {
   }
 }
 
-export async function signInWithEmailAndPassword(
-  username: string,
-  password: string
-): Promise<User> {
-  try {
-    const response = await firebaseAuth.signInWithEmailAndPassword(
-      username,
-      password
-    );
-    const user = response?.user ?? null;
-
-    return user;
-  } catch (error) {
-    console.error(
-      "Error signing in with email and password... ",
-      error.message
-    );
-    throw new Error(error.message);
-  }
-}
-
 export async function signInwithEmailLink(email: string): Promise<void> {
   try {
     /**

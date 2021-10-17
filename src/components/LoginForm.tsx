@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Button, Form, Input } from "antd";
 
-import { signInWithEmailAndPassword } from "services/firebaseAuthentication";
+import { login } from "services/auth";
 import { AuthForms } from "types/login";
 
 type Props = {
@@ -14,7 +14,7 @@ function LoginForm({ changeForm }: Props) {
   async function onSubmit(data: any) {
     const { username, password } = data;
 
-    await signInWithEmailAndPassword(username, password);
+    await login(username, password);
   }
 
   function handleShowSignUpForm() {
