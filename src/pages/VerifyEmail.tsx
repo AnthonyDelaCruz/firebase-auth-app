@@ -16,7 +16,7 @@ function VerifyEmail() {
 
   return (
     <div>
-      <Title>Verify Email</Title>
+      <Title level={3}>Verify Email</Title>
       <Text>You will get sent a verification email.</Text>
       <div>
         {isEmailVerified ? (
