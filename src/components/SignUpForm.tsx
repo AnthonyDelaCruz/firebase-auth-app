@@ -3,14 +3,21 @@ import { Button, Form, Input } from "antd";
 import { withSnackbar, WithSnackbarProps } from "notistack";
 
 import { signUpWithEmailAndPassword } from "services/auth";
+import { AuthForms } from "types/login";
 
 /**
  *
  * @TODO
  * Add toasts when email has been sent...
  */
+type Props = {
+  changeForm: (form: AuthForms) => void;
+};
 
-function SignUpForm({ enqueueSnackbar }: WithSnackbarProps) {
+function SignUpForm({
+  changeForm,
+  enqueueSnackbar,
+}: WithSnackbarProps & Props) {
   const { register, handleSubmit } = useForm();
 
   async function onSubmit(data: any) {
@@ -23,6 +30,10 @@ function SignUpForm({ enqueueSnackbar }: WithSnackbarProps) {
         variant: "error",
       });
     }
+  }
+
+  function handleShowLoginForm() {
+    changeForm(AuthForms.LOGIN);
   }
 
   return (
@@ -38,6 +49,9 @@ function SignUpForm({ enqueueSnackbar }: WithSnackbarProps) {
       </Form.Item>
       <Button block htmlType="submit">
         Create account
+      </Button>
+      <Button block type="link" onClick={handleShowLoginForm}>
+        Back to login
       </Button>
     </Form>
   );

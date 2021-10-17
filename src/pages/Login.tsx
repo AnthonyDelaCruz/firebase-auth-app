@@ -1,30 +1,42 @@
-import React from "react";
+import { useState } from "react";
 
 import { Divider } from "antd";
 
 // import AuthPersistenceWrapper from "wrappers/AuthPersistenceWrapper";
 import {
   // EmailLinkSignInForm,
-  // LoginForm,
   // PersistenceList,
+  LoginForm,
   SignUpForm,
   SocialLoginButtons,
 } from "components";
 
 import "./Login.css";
+import { AuthForms } from "types/login";
 
 function LoginPage() {
+  const [currentForm, setCurrentForm] = useState<AuthForms>(AuthForms.LOGIN);
+  const isLogin = currentForm === AuthForms.LOGIN;
+
+  function handleChangeForm(form: AuthForms) {
+    setCurrentForm(form);
+  }
+
   return (
     <div id="login-page">
       <img src="firebase_logo.png" alt="firebase-logo" />
       <div className="login-form">
-        <Divider>Login with</Divider>
-        <SocialLoginButtons />
-        <Divider>or Sign up</Divider>
-        <SignUpForm />
+        {isLogin ? (
+          <>
+            <SocialLoginButtons />
+            <Divider>or</Divider>
+            <LoginForm changeForm={handleChangeForm} />
+          </>
+        ) : (
+          <SignUpForm changeForm={handleChangeForm} />
+        )}
         {/* <AuthPersistenceWrapper> */}
         {/* <PersistenceList /> */}
-        {/* <LoginForm /> */}
         {/* </AuthPersistenceWrapper> */}
       </div>
       {/* <EmailLinkSignInForm /> */}
